@@ -1,0 +1,65 @@
+{
+  "test": {
+    "ban_dau": 3166,
+    "chu_so": 83,
+    "cau_co_ma": 73,
+    "luot_ma": 76,
+    "chu_so_khac": 10,
+    "loai_trung": 0,
+    "con_lai": 3166,
+    "phan_bo_goc": [
+      1409,
+      167,
+      1590
+    ],
+    "phan_bo_sau_loc": [
+      1409,
+      167,
+      1590
+    ],
+    "do_dai_trung_vi": 11.0,
+    "do_dai_p99": 52.34999999999991
+  },
+  "validation": {
+    "ban_dau": 1583,
+    "chu_so": 22,
+    "cau_co_ma": 18,
+    "luot_ma": 20,
+    "chu_so_khac": 4,
+    "loai_trung": 7,
+    "con_lai": 1576,
+    "phan_bo_goc": [
+      705,
+      73,
+      805
+    ],
+    "phan_bo_sau_loc": [
+      705,
+      73,
+      798
+    ],
+    "do_dai_trung_vi": 11.0,
+    "do_dai_p99": 46.0
+  },
+  "train": {
+    "ban_dau": 11426,
+    "chu_so": 249,
+    "cau_co_ma": 210,
+    "luot_ma": 237,
+    "chu_so_khac": 40,
+    "loai_trung": 80,
+    "con_lai": 11346,
+    "phan_bo_goc": [
+      5325,
+      458,
+      5643
+    ],
+    "phan_bo_sau_loc": [
+      5322,
+      455,
+      5569
+    ],
+    "do_dai_trung_vi": 11.0,
+    "do_dai_p99": 52.0
+  }
+}

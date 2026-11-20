@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+cache/
+tai_lap/
+*.aux
+*.toc
+*.nav
+*.snm
+*.vrb
+*.out
+*.log
