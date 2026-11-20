@@ -1,0 +1,277 @@
+{
+  "ngay_chot_thiet_ke": "2026-11-20T14:24:06+07:00",
+  "quy_tac": "Cấu hình và đối chứng dưới đây được ấn định trước khi chấm test. Mỗi checkpoint được ghi SHA-256 trước khi dự đoán. Việc tổng hợp chỉ đọc dự đoán đã lưu.",
+  "tap_test": 3166,
+  "metric": "Macro-F1, trung bình F1 của 3 lớp",
+  "quy_tac_chon": {
+    "lr": "C có Macro-F1 validation trung bình cao nhất trong 0.1, 1, 10; lbfgs xác định.",
+    "rnn": "So ba cấu hình cho mỗi họ ở seed 42 trên validation; tái sử dụng cấu hình đã chọn cho seed 43/44. Ablation giữ cấu hình đối chứng.",
+    "pho_toan_tap": "AdamW 2e-5, batch 32, 3 epoch, lấy epoch có Macro-F1 validation cao nhất; xuất trọng số BF16, suy luận FP32. E4 dùng cùng quy tắc.",
+    "mau_341": "Cố định 341 train và 316 validation; seed 42, 3 epoch, lấy epoch cuối cho mọi biến thể."
+  },
+  "bootstrap": {
+    "lap": 1000,
+    "seed": 2026,
+    "kieu": "lấy lại mẫu theo cặp ID không phân tầng, khoảng phân vị 2.5%–97.5%",
+    "moc_tuong_duong_rq3": 0.01
+  },
+  "e5": "Phân tích seed 42; thống kê mọi nhãn; chọn ví dụ theo cặp nhãn thật và dự đoán sau khi chấm; chỉ dùng để giải thích lỗi.",
+  "cases": {
+    "lr_42": {
+      "ten": "TF-IDF + LR",
+      "nhom": "E1",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "lr_42"
+    },
+    "bi_42": {
+      "ten": "BiLSTM",
+      "nhom": "E1",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "bi_42"
+    },
+    "att_42": {
+      "ten": "BiLSTM + attention + fastText",
+      "nhom": "E1",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "att_42"
+    },
+    "lr_43": {
+      "ten": "TF-IDF + LR",
+      "nhom": "E1",
+      "seed": 43,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "lr_43"
+    },
+    "bi_43": {
+      "ten": "BiLSTM",
+      "nhom": "E1",
+      "seed": 43,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "bi_43"
+    },
+    "att_43": {
+      "ten": "BiLSTM + attention + fastText",
+      "nhom": "E1",
+      "seed": 43,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "att_43"
+    },
+    "lr_44": {
+      "ten": "TF-IDF + LR",
+      "nhom": "E1",
+      "seed": 44,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "lr_44"
+    },
+    "bi_44": {
+      "ten": "BiLSTM",
+      "nhom": "E1",
+      "seed": 44,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "bi_44"
+    },
+    "att_44": {
+      "ten": "BiLSTM + attention + fastText",
+      "nhom": "E1",
+      "seed": 44,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "att_44"
+    },
+    "pho_42": {
+      "ten": "PhoBERT · tinh chỉnh toàn bộ",
+      "nhom": "E1",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "pho_42"
+    },
+    "e2_bo_attention": {
+      "ten": "Bỏ attention",
+      "nhom": "E2",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "att_sans_att"
+    },
+    "e2_bo_fasttext": {
+      "ten": "Bỏ fastText",
+      "nhom": "E2",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "att_sans_ft"
+    },
+    "e2_bo_tach_tu": {
+      "ten": "Bỏ tách từ",
+      "nhom": "E2",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 100,
+      "ma_huan_luyen": "att_syll"
+    },
+    "e4_bi_10": {
+      "ten": "BiLSTM",
+      "nhom": "E4",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 10,
+      "ma_huan_luyen": "courbe_bi_10"
+    },
+    "e4_pho_10": {
+      "ten": "PhoBERT",
+      "nhom": "E4",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 10,
+      "ma_huan_luyen": "courbe_pho_10"
+    },
+    "e4_bi_25": {
+      "ten": "BiLSTM",
+      "nhom": "E4",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 25,
+      "ma_huan_luyen": "courbe_bi_25"
+    },
+    "e4_pho_25": {
+      "ten": "PhoBERT",
+      "nhom": "E4",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 25,
+      "ma_huan_luyen": "courbe_pho_25"
+    },
+    "e4_bi_50": {
+      "ten": "BiLSTM",
+      "nhom": "E4",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 50,
+      "ma_huan_luyen": "courbe_bi_50"
+    },
+    "e4_pho_50": {
+      "ten": "PhoBERT",
+      "nhom": "E4",
+      "seed": 42,
+      "pham_vi": "toan_tap",
+      "phan_tram": 50,
+      "ma_huan_luyen": "courbe_pho_50"
+    },
+    "it_bi_10": {
+      "ten": "BiLSTM",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 10,
+      "ma_huan_luyen": "petit_bi_10"
+    },
+    "it_pho_10": {
+      "ten": "PhoBERT",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 10,
+      "ma_huan_luyen": "petit_pho_10"
+    },
+    "it_bi_25": {
+      "ten": "BiLSTM",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 25,
+      "ma_huan_luyen": "petit_bi_25"
+    },
+    "it_pho_25": {
+      "ten": "PhoBERT",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 25,
+      "ma_huan_luyen": "petit_pho_25"
+    },
+    "it_bi_50": {
+      "ten": "BiLSTM",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 50,
+      "ma_huan_luyen": "petit_bi_50"
+    },
+    "it_pho_50": {
+      "ten": "PhoBERT",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 50,
+      "ma_huan_luyen": "petit_pho_50"
+    },
+    "it_bi_100": {
+      "ten": "BiLSTM",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 100,
+      "ma_huan_luyen": "petit_bi_100"
+    },
+    "it_pho_100": {
+      "ten": "PhoBERT",
+      "nhom": "E2/E3/E4",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 100,
+      "ma_huan_luyen": "petit_pho_100"
+    },
+    "e2_bi_am": {
+      "ten": "BiLSTM · âm tiết",
+      "nhom": "E2/E3",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 100,
+      "ma_huan_luyen": "petit_bi_syll"
+    },
+    "e2_pho_am": {
+      "ten": "PhoBERT · âm tiết",
+      "nhom": "E2/E3",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 100,
+      "ma_huan_luyen": "petit_pho_syll"
+    },
+    "e3_4_tang": {
+      "ten": "PhoBERT · 4 tầng cuối",
+      "nhom": "E2/E3",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 100,
+      "ma_huan_luyen": "petit_pho_4"
+    },
+    "e3_chi_head": {
+      "ten": "PhoBERT · chỉ học đầu phân loại",
+      "nhom": "E2/E3",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 100,
+      "ma_huan_luyen": "petit_pho_gel"
+    },
+    "e3_khong_trong_so": {
+      "ten": "PhoBERT · bỏ trọng số lớp",
+      "nhom": "E2/E3",
+      "seed": 42,
+      "pham_vi": "mau_341",
+      "phan_tram": 100,
+      "ma_huan_luyen": "petit_pho_sans_poids"
+    }
+  }
+}

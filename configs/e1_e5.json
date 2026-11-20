@@ -1,0 +1,8 @@
+{
+  "seed": [42, 43, 44],
+  "bilstm": {"learning_rate": [0.0005, 0.001, 0.002], "hidden": [128, 256], "layers": [1, 2], "dropout": [0.3, 0.4, 0.5], "batch": 64, "epochs": 20, "patience": 3, "so_cau_hinh": 9},
+  "phobert": {"learning_rate": [0.00002, 0.00003, 0.00005], "dropout": [0.1, 0.2, 0.3], "batch": 32, "epochs": 5, "epoch_chon_tu": 3, "warmup": 0.1, "weight_decay": 0.01},
+  "token": {"p": 0.99, "min": 64, "max": 96},
+  "e4_phan_tram": [10, 25, 50, 100],
+  "bootstrap": 1000
+}
