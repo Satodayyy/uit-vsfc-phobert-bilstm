@@ -46,3 +46,32 @@ class HoiQuyLogistic(nn.Module):
     @property
     def intercept_(self):
         return self.linear.bias.detach().cpu().numpy()
+
+def huan_luyen(x, y, cac_nhan, trong_so_lop, c, seed):
+    with torch.random.fork_rng(devices=[]):
+        torch.random.default_generator.manual_seed(seed)
+        model = HoiQuyLogistic(x.shape[1], cac_nhan)
+    optimizer = torch.optim.LBFGS(
+        model.parameters(), max_iter=MAX_ITER, history_size=20,
+        tolerance_grad=1e-7, tolerance_change=1e-11, line_search_fn="strong_wolfe",
+    )
+    # Cross-entropy lấy trung bình có trọng số. Tổng trọng số mẫu bằng số câu train.
+    # C càng nhỏ thì phạt L2 càng mạnh. Chỉ phạt trọng số, giữ tự do cho hệ số chặn.
+    def muc_tieu():
+        entropy = F.cross_entropy(model(x), y, weight=trong_so_lop)
+        return entropy + model.linear.weight.square().sum() / (2 * c * len(y))
+
+    def closure():
+        optimizer.zero_grad()
+        loss = muc_tieu()
+        loss.backward()
+        return loss
+
+    loss_dau = optimizer.step(closure).item()
+    with torch.no_grad():
+        loss_cuoi = muc_tieu().item()
+    trang_thai = optimizer.state[model.linear.weight]
+    return model.eval(), {
+        "loss_dau": loss_dau, "loss_cuoi": loss_cuoi,
+        "so_buoc_lbfgs": trang_thai["n_iter"], "so_lan_tinh_loss_lbfgs": trang_thai["func_evals"],
+    }
