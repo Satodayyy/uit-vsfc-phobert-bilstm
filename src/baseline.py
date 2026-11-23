@@ -75,3 +75,66 @@ def huan_luyen(x, y, cac_nhan, trong_so_lop, c, seed):
         "loss_dau": loss_dau, "loss_cuoi": loss_cuoi,
         "so_buoc_lbfgs": trang_thai["n_iter"], "so_lan_tinh_loss_lbfgs": trang_thai["func_evals"],
     }
+
+def baseline(data):
+    train, val = data["train"], data["validation"]
+    start = time.perf_counter()
+    vector = TfidfVectorizer(ngram_range=(1, 2), lowercase=False, tokenizer=str.split, token_pattern=None)
+    x = tensor_thua(vector.fit_transform(train.tach_tu))
+    giay_tfidf = time.perf_counter() - start
+    x_val = tensor_thua(vector.transform(val.tach_tu))
+    cac_nhan, ma_nhan, tan_so = np.unique(train.sentiment, return_inverse=True, return_counts=True)
+    if len(cac_nhan) < 2:
+        raise ValueError("Tập train cần ít nhất hai lớp cho hồi quy logistic.")
+    y = torch.from_numpy(ma_nhan).long()
+    trong_so_lop = torch.as_tensor(len(y) / (len(cac_nhan) * tan_so), dtype=torch.float64)
+
+    tat_ca, da_chon = [], []
+    c_chon, f1_tot_nhat = None, -1.0
+    so_luong_cu = torch.get_num_threads()
+    torch.set_num_threads(min(2, so_luong_cu))
+    try:
+        for c in LUOI_C:
+            hien_tai = []
+            for seed in SEEDS:
+                start = time.perf_counter()
+                model, nhat_ky = huan_luyen(x, y, cac_nhan, trong_so_lop, c, seed)
+                elapsed = time.perf_counter() - start
+                scores = diem(val.sentiment, model.predict(x_val))
+                record = dict(C=c, seed=seed, giay=giay_tfidf + elapsed,
+                              giay_huan_luyen=elapsed, **scores, **nhat_ky)
+                hien_tai.append((record, model))
+                tat_ca.append(record)
+                print(f"C={c:g} | seed={seed} | Macro-F1 validation={scores['macro_f1']:.4f}", flush=True)
+            f1 = float(np.mean([r["macro_f1"] for r, _ in hien_tai]))
+            if f1 > f1_tot_nhat:  # Nếu hòa, giữ C nhỏ hơn theo thứ tự lưới.
+                f1_tot_nhat, c_chon, da_chon = f1, c, hien_tai
+        chosen = da_chon[0][1]
+        pred = chosen.predict(x_val)
+    finally:
+        torch.set_num_threads(so_luong_cu)
+
+    report = {
+        "thoi_diem": luc_nay(), "tap": "validation", "backend": "pytorch",
+        "phien_ban_torch": str(torch.__version__), "thiet_bi": "cpu", "so_luong_cpu": min(2, so_luong_cu),
+        "bo_toi_uu": "torch.optim.LBFGS", "max_iter": MAX_ITER, "kieu_so": "float64",
+        "regularization": "L2", "can_bang_lop": "n_train / (so_lop * tan_so_lop)",
+        "so_cau_train": len(train), "so_cau_validation": len(val), "so_dac_trung": x.shape[1],
+        "giay_tao_tfidf_train": giay_tfidf, "C": c_chon, "macro_f1_validation_trung_binh": f1_tot_nhat,
+        "ket_qua": tat_ca, "da_chon": [r for r, _ in da_chon], "seed_ma_tran": SEEDS[0],
+        "ma_tran": confusion_matrix(val.sentiment, pred, labels=IDS).tolist(),
+        "so_tham_so": sum(p.numel() for p in chosen.parameters()),
+    }
+    OUT.mkdir(parents=True, exist_ok=True)
+    dest = OUT / "baseline.joblib"
+    temp = OUT / f"baseline.{uuid4().hex}.tmp"
+    # Giữ chung bộ từ vựng và ba mô hình PyTorch để mã demo và mã chấm dùng cùng checkpoint.
+    try:
+        joblib.dump((vector, da_chon), temp)
+        with FileLock(str(OUT / "baseline.write.lock")):
+            temp.replace(dest)
+            report["sha_model"] = checksum(dest)
+            ghi(OUT / "baseline.json", report)
+    finally:
+        temp.unlink(missing_ok=True)
+    return vector, da_chon, report
