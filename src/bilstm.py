@@ -42,3 +42,33 @@ def tai_vector(vocab):
     temp.replace(saved)
     return found
 
+class BiLSTM(nn.Module):
+    def __init__(self, vocab, conf, attention):
+        super().__init__()
+        h, n, dp = conf["hidden"], conf["layers"], conf["dropout"]
+        self.embedding = nn.Embedding(len(vocab), 300, padding_idx=0)
+        self.encoder = nn.LSTM(
+            300, h, num_layers=n, dropout=dp if n > 1 else 0.0, batch_first=True, bidirectional=True
+        )
+        self.dropout = nn.Dropout(dp)
+        self.attention = nn.Linear(2 * h, 1) if attention else None
+        self.head = nn.Linear(2 * h, 3)
+
+    def forward(self, tokens, lengths):
+        packed = pack_padded_sequence(
+            self.dropout(self.embedding(tokens)),
+            lengths.cpu(),
+            batch_first=True,
+            enforce_sorted=False,
+        )
+        encoded, _ = self.encoder(packed)
+        values, _ = pad_packed_sequence(encoded, batch_first=True)
+        mask = torch.arange(values.size(1), device=tokens.device)[None, :] < lengths[:, None]
+        if self.attention is None:
+            pooled = values.masked_fill(~mask[:, :, None], -torch.inf).amax(1)
+        else:
+            weights = (
+                self.attention(values).squeeze(-1).float().masked_fill(~mask, -torch.inf).softmax(1)
+            )
+            pooled = (values * weights.unsqueeze(-1)).sum(1)
+        return self.head(self.dropout(pooled))
