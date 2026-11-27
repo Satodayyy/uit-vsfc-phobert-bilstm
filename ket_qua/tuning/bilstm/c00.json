@@ -1,0 +1,96 @@
+{
+  "p99": 42,
+  "limit": 64,
+  "cot_van_ban": "tach_tu",
+  "pad": 0,
+  "spec": {
+    "tach": true,
+    "attention": false,
+    "fasttext": false,
+    "mo_tang": "tat_ca",
+    "trong_so": true,
+    "phan_tram": 100,
+    "ho": "bilstm"
+  },
+  "config": {
+    "lr": 0.001,
+    "hidden": 256,
+    "layers": 1,
+    "dropout": 0.3
+  },
+  "seed": 42,
+  "so_cau_train": 11346,
+  "so_cau_validation": 1576,
+  "ids_train_sha": "0778c1719feff20fb4400afec13bbf0408e443c1a728c74efd721a7cc40d7d0b",
+  "phien_ban_phobert": "86cd7fd4c148980922ac11a2cf5e257f2ba639e1",
+  "phien_ban_du_lieu": "2d76906157232f87e9883fa37ebfc91ffdee1f83",
+  "sha_parquet": {
+    "train": "7545fbab6bcebf2ee8bc529d455edb6ce626f71354c24e0422e9f2832806311a",
+    "validation": "68b0a7c97ced26c8c971e0a996719a345e7897870e8d3ea0d319cdce16b90514",
+    "test": "74a223204066690a2d6b6c3dac85178e8acc43b0a7f2b11e25e52d5837911e78"
+  },
+  "thiet_bi": "CPU",
+  "versions": {
+    "underthesea": "9.5.0",
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.6",
+    "numpy": "2.3.5"
+  },
+  "sha_huan_luyen": "44ec0a353f6b4657393bc4ff864fb7433b8e739fa2a072c149b102b1430832bb",
+  "epochs_tham_do": null,
+  "giay": 118.9032724839999,
+  "tham_so": 2278923,
+  "tham_so_hoc": 2278923,
+  "gpu_mib": null,
+  "validation": 0.7912905215306094,
+  "best_epoch": 2,
+  "history": [
+    {
+      "epoch": 1,
+      "train_f1": 0.6409962747181258,
+      "train_loss": 0.664671555037284,
+      "val_f1": 0.6927289627343804,
+      "val_loss": 0.515124069972618,
+      "thiet_bi": "CPU",
+      "micro_batch": 64
+    },
+    {
+      "epoch": 2,
+      "train_f1": 0.7173693166511007,
+      "train_loss": 0.4578750273951265,
+      "val_f1": 0.7912905215306094,
+      "val_loss": 0.5962663733596835,
+      "thiet_bi": "CPU",
+      "micro_batch": 64
+    },
+    {
+      "epoch": 3,
+      "train_f1": 0.7630070189376256,
+      "train_loss": 0.3828621274058829,
+      "val_f1": 0.7909843589287426,
+      "val_loss": 0.5271560192005262,
+      "thiet_bi": "CPU",
+      "micro_batch": 64
+    },
+    {
+      "epoch": 4,
+      "train_f1": 0.808036960128722,
+      "train_loss": 0.2861910193495126,
+      "val_f1": 0.7767173619120014,
+      "val_loss": 0.5744611782791403,
+      "thiet_bi": "CPU",
+      "micro_batch": 64
+    },
+    {
+      "epoch": 5,
+      "train_f1": 0.8422122976816194,
+      "train_loss": 0.22835517238824019,
+      "val_f1": 0.7769525202935013,
+      "val_loss": 0.5518246954914211,
+      "thiet_bi": "CPU",
+      "micro_batch": 64
+    }
+  ],
+  "kiem_tra_ngan": false,
+  "ngay": "2026-11-25T21:38:49+07:00"
+}
