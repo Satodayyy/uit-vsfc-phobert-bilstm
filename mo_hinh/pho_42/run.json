@@ -1,0 +1,60 @@
+{
+  "config": {
+    "lr": 2e-05,
+    "dropout": 0.1
+  },
+  "spec": {
+    "tach": true,
+    "attention": false,
+    "fasttext": false,
+    "mo_tang": "tat_ca",
+    "trong_so": true,
+    "phan_tram": 100,
+    "ho": "phobert"
+  },
+  "seed": 42,
+  "so_cau_train": 11346,
+  "so_cau_validation": 1576,
+  "ids_train_sha": "0778c1719feff20fb4400afec13bbf0408e443c1a728c74efd721a7cc40d7d0b",
+  "limit": 64,
+  "cot_van_ban": "tach_tu",
+  "vocab": {},
+  "pad": 1,
+  "tham_so": 135000579,
+  "tham_so_hoc": 135000579,
+  "so_hang_cap_nhat": 3921,
+  "thiet_bi": "cuda",
+  "bf16": true,
+  "epochs": 3,
+  "batch": 32,
+  "dropout_encoder": 0.1,
+  "optimizer": "AdamW",
+  "bat_dau": "2026-11-28T14:05:03+07:00",
+  "history": [
+    {
+      "epoch": 1,
+      "train_f1": 0.6914971314776266,
+      "val_f1": 0.8477707856699928,
+      "train_loss": 0.6528790878473109,
+      "val_loss": 0.49409503157049683
+    },
+    {
+      "epoch": 2,
+      "train_f1": 0.8442185231380425,
+      "val_f1": 0.8615589626844621,
+      "train_loss": 0.38174646872016127,
+      "val_loss": 0.5532214151031979
+    },
+    {
+      "epoch": 3,
+      "train_f1": 0.8932364998693987,
+      "val_f1": 0.8644679443864033,
+      "train_loss": 0.2731527921338148,
+      "val_loss": 0.5893869121412805
+    }
+  ],
+  "best_epoch": 3,
+  "validation": 0.8644679443864033,
+  "giay": 155.45174769100004,
+  "ngay": "2026-11-28T14:07:39+07:00"
+}
