@@ -1,0 +1,81 @@
+{
+  "sha256": "8322108b2539dec7789baa9e586167d2ca91cd6206f518b4574fc31997cc874c",
+  "so_byte": 270053711,
+  "phan": [
+    {
+      "tep": "trong_so.001",
+      "bytes": 18874368,
+      "sha256": "b4709b12678889c0d016dba5effba6d01bc24d0a797887b227ff6da30f57c103"
+    },
+    {
+      "tep": "trong_so.002",
+      "bytes": 18874368,
+      "sha256": "c0e2e8f6b02c3eb34cbabffb7e9a47b9cc070b067a8732f185ff8b574d8d0aaa"
+    },
+    {
+      "tep": "trong_so.003",
+      "bytes": 18874368,
+      "sha256": "009c5be85254f1b277ec71315d390f013a163ad54051bb5f2cb62db5d62358c2"
+    },
+    {
+      "tep": "trong_so.004",
+      "bytes": 18874368,
+      "sha256": "5018a7cb53217c5b68bd8d047e13ada235360bcb365922a4e66bf82e5e0daa63"
+    },
+    {
+      "tep": "trong_so.005",
+      "bytes": 18874368,
+      "sha256": "0b9c3da510e32c33ce6496859305ee4b4733ec0374c0116d13d639743cd13ee7"
+    },
+    {
+      "tep": "trong_so.006",
+      "bytes": 18874368,
+      "sha256": "9c4d984b22f285f22d66eee485ff55defac79ee7684f88d66a9e0b3600473abf"
+    },
+    {
+      "tep": "trong_so.007",
+      "bytes": 18874368,
+      "sha256": "4b72f2b30e81fa711f861a19f9f35fddeb1c53da120d5ae961ad0c76262f6c53"
+    },
+    {
+      "tep": "trong_so.008",
+      "bytes": 18874368,
+      "sha256": "1a26e63f3e245ae387d2b6f3f8c9f89aee39e4ee91ebd88f428e31b5ff909f31"
+    },
+    {
+      "tep": "trong_so.009",
+      "bytes": 18874368,
+      "sha256": "80ace75b79eba9c712ca4fde147e6e10a6a603e908edac96378915865d5fc033"
+    },
+    {
+      "tep": "trong_so.010",
+      "bytes": 18874368,
+      "sha256": "b80d06df4015daebdc4bec5f7b8e54b67d442bd14e42cc38a28eb26328052e33"
+    },
+    {
+      "tep": "trong_so.011",
+      "bytes": 18874368,
+      "sha256": "552d1fbe7d0d4f189128036c479ca3a1c065206e626e4bd1cf56c9a6441f609f"
+    },
+    {
+      "tep": "trong_so.012",
+      "bytes": 18874368,
+      "sha256": "96b3c2cc4e217760dae9d6060d124722f951382937c54d9b74e76c5935640cc9"
+    },
+    {
+      "tep": "trong_so.013",
+      "bytes": 18874368,
+      "sha256": "7a67bd1b6d7af132310ae1d02b30f3061e1a037150c40cc502b2a9b74f914164"
+    },
+    {
+      "tep": "trong_so.014",
+      "bytes": 18874368,
+      "sha256": "1381a280645e4cc9f0e920a34c960aefa2fd1c04a03c24204ab9a82101982ea8"
+    },
+    {
+      "tep": "trong_so.015",
+      "bytes": 5812559,
+      "sha256": "683bf8ca386e8f7c4266e1ed1d51d7c658d584bff0b9ac63f93b0d9ff177b9fa"
+    }
+  ]
+}
